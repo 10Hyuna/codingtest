@@ -7,21 +7,27 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int[] arr = new int[30];
+        int[] arr = new int[11];
         int num;
-        for(int i = 0; i < 30; i++){
-            arr[i] = i + 1;
-        }
 
-        for(int i = 0; i < 28; i++){
+        int j = 0;
+        boolean isOverlap;
+
+        for(int i = 0; i < 10; i++){
             num = Integer.parseInt(br.readLine());
-            arr[num - 1] = 0;
-        }
+            num %= 42;
+            isOverlap = false;
+            for (int k = 0; k < j; k++){
+                if(arr[k] == num){
+                    isOverlap = true;
+                }
+            }
 
-        for(int i = 0; i < 30; i++){
-            if(arr[i] != 0){
-                System.out.printf("%d\n", arr[i]);
+            if(!isOverlap){
+                arr[j++] = num;
             }
         }
+
+        System.out.printf("%d", j);
     }
 }
