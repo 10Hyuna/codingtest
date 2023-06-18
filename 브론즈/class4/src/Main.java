@@ -12,26 +12,27 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        int i, j, k;
+        int startIndex, endIndex, tmp;
 
         int[] bucket = new int[n];
         for(int a = 0; a < n ; a++){
-            bucket[a] = 0;
+            bucket[a] = a + 1;
         }
 
-        for (int a = 0; a < m; a++){
+        for(int i = 0; i < m; i++){
             line = br.readLine();
             st = new StringTokenizer(line, " ");
-            i = Integer.parseInt(st.nextToken());
-            j = Integer.parseInt(st.nextToken());
-            k = Integer.parseInt(st.nextToken());
-            for(int b = i; b <= j; b++){
-                bucket[b - 1] = k;
-            }
+
+            startIndex = Integer.parseInt(st.nextToken()) - 1;
+            endIndex = Integer.parseInt(st.nextToken()) - 1;
+
+            tmp = bucket[startIndex];
+            bucket[startIndex] = bucket[endIndex];
+            bucket[endIndex] = tmp;
         }
 
-        for(int a = 0; a < n; a++){
-            System.out.printf("%d ", bucket[a]);
+        for(int i = 0; i < n; i++){
+            System.out.printf("%d ", bucket[i]);
         }
     }
 }
