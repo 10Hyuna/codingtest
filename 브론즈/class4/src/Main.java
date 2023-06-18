@@ -8,31 +8,30 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
+        int n = Integer.parseInt(br.readLine());
+
         String line = br.readLine();
-        st = new StringTokenizer(line, " ");
-
-        int n = Integer.parseInt(st.nextToken());
-        int x = Integer.parseInt(st.nextToken());
-        int num;
-
-        line = br.readLine();
 
         br.close();
 
         int[] arr = new int[n];
         st = new StringTokenizer(line, " ");
 
-        int j = 0;
-
         for(int i = 0; i < n; i++){
-            num = Integer.parseInt(st.nextToken());
-            if(num < x){
-                arr[j++] = num;
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+        int max = arr[0];
+        int min = arr[0];
+
+        for (int i = 1; i < n; i++){
+            if(arr[i] > max){
+                max = arr[i];
+            }
+            if(arr[i] < min){
+                min = arr[i];
             }
         }
 
-        for(int i = 0; i < j; i++){
-            System.out.printf("%d ", arr[i]);
-        }
+        System.out.printf("%d %d", min, max);
     }
 }
