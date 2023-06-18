@@ -8,24 +8,31 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        int n = Integer.parseInt(br.readLine());
         String line = br.readLine();
-        int v = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(line, " ");
 
-        int count = 0;
+        int n = Integer.parseInt(st.nextToken());
+        int x = Integer.parseInt(st.nextToken());
+        int num;
+
+        line = br.readLine();
 
         br.close();
 
         int[] arr = new int[n];
         st = new StringTokenizer(line, " ");
 
+        int j = 0;
+
         for(int i = 0; i < n; i++){
-            arr[i] = Integer.parseInt(st.nextToken());
-            if(arr[i] == v){
-                count++;
+            num = Integer.parseInt(st.nextToken());
+            if(num < x){
+                arr[j++] = num;
             }
         }
 
-        System.out.printf("%d", count);
+        for(int i = 0; i < j; i++){
+            System.out.printf("%d ", arr[i]);
+        }
     }
 }
