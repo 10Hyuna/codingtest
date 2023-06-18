@@ -6,28 +6,37 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-        int[] arr = new int[11];
-        int num;
+        String line = br.readLine();
+        st = new StringTokenizer(line, " ");
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
 
-        int j = 0;
-        boolean isOverlap;
+        int i, j, tmp;
 
-        for(int i = 0; i < 10; i++){
-            num = Integer.parseInt(br.readLine());
-            num %= 42;
-            isOverlap = false;
-            for (int k = 0; k < j; k++){
-                if(arr[k] == num){
-                    isOverlap = true;
-                }
-            }
+        int[] bucket = new int[n];
+        for(int a = 0; a < n; a++){
+            bucket[a] = a + 1;
+        }
 
-            if(!isOverlap){
-                arr[j++] = num;
+        for (int a = 0; a < m; a++){
+            line = br.readLine();
+            st = new StringTokenizer(line, " ");
+            i = Integer.parseInt(st.nextToken()) - 1;
+            j = Integer.parseInt(st.nextToken()) - 1;
+
+            while(i < j){
+                tmp = bucket[i];
+                bucket[i] = bucket[j];
+                bucket[j] = tmp;
+                i++;
+                j--;
             }
         }
 
-        System.out.printf("%d", j);
+        for(int a = 0; a < n; a++){
+            System.out.printf("%d ", bucket[a]);
+        }
     }
 }
