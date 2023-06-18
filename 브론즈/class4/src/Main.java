@@ -6,33 +6,22 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-        String line = br.readLine();
-        st = new StringTokenizer(line, " ");
 
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
-        int startIndex, endIndex, tmp;
-
-        int[] bucket = new int[n];
-        for(int a = 0; a < n ; a++){
-            bucket[a] = a + 1;
+        int[] arr = new int[30];
+        int num;
+        for(int i = 0; i < 30; i++){
+            arr[i] = i + 1;
         }
 
-        for(int i = 0; i < m; i++){
-            line = br.readLine();
-            st = new StringTokenizer(line, " ");
-
-            startIndex = Integer.parseInt(st.nextToken()) - 1;
-            endIndex = Integer.parseInt(st.nextToken()) - 1;
-
-            tmp = bucket[startIndex];
-            bucket[startIndex] = bucket[endIndex];
-            bucket[endIndex] = tmp;
+        for(int i = 0; i < 28; i++){
+            num = Integer.parseInt(br.readLine());
+            arr[num - 1] = 0;
         }
 
-        for(int i = 0; i < n; i++){
-            System.out.printf("%d ", bucket[i]);
+        for(int i = 0; i < 30; i++){
+            if(arr[i] != 0){
+                System.out.printf("%d\n", arr[i]);
+            }
         }
     }
 }
