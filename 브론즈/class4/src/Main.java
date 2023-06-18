@@ -6,19 +6,32 @@ import java.util.StringTokenizer;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int num;
-        int max = 0;
-        int index = 0;
+        StringTokenizer st;
+        String line = br.readLine();
+        st = new StringTokenizer(line, " ");
 
-        for(int i = 0; i < 9; i++){
-            num = Integer.parseInt(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int i, j, k;
 
-            if(num > max){
-                max = num;
-                index = i + 1;
+        int[] bucket = new int[n];
+        for(int a = 0; a < n ; a++){
+            bucket[a] = 0;
+        }
+
+        for (int a = 0; a < m; a++){
+            line = br.readLine();
+            st = new StringTokenizer(line, " ");
+            i = Integer.parseInt(st.nextToken());
+            j = Integer.parseInt(st.nextToken());
+            k = Integer.parseInt(st.nextToken());
+            for(int b = i; b <= j; b++){
+                bucket[b - 1] = k;
             }
         }
 
-        System.out.printf("%d\n%d", max, index);
+        for(int a = 0; a < n; a++){
+            System.out.printf("%d ", bucket[a]);
+        }
     }
 }
