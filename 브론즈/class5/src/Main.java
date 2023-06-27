@@ -6,11 +6,14 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String line = br.readLine();
-        char text = line.charAt(0);
+        int count = Integer.parseInt(br.readLine());
+        String numbers = br.readLine();
+        int sum = 0;
 
-        int changedText = (int)text;
+        for(int i = 0; i < count; i++){
+            sum += Integer.parseInt(numbers.substring(i, i + 1));
+        }
 
-        System.out.println(changedText);
+        System.out.printf("%d", sum);
     }
 }
