@@ -6,14 +6,22 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int count = Integer.parseInt(br.readLine());
-        String numbers = br.readLine();
-        int sum = 0;
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        int foundIndex;
+        String foundAlphabet;
 
-        for(int i = 0; i < count; i++){
-            sum += Integer.parseInt(numbers.substring(i, i + 1));
+        String line = br.readLine();
+
+        for(int i = 0; i < alphabet.length(); i++){
+            foundIndex = -1;
+            foundAlphabet = alphabet.substring(i, i + 1);
+            for(int j = 0; j < line.length(); j++){
+                if(foundAlphabet.equals(line.substring(j, j + 1))){
+                    foundIndex = j;
+                    break;
+                }
+            }
+            System.out.printf("%d ", foundIndex);
         }
-
-        System.out.printf("%d", sum);
     }
 }
