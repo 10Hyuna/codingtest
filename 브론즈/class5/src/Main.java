@@ -5,26 +5,31 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Boolean isText = false;
-        int sum = 0;
 
         String line = br.readLine();
 
-        for(int i = 0; i < line.length(); i++){
-            if(line.substring(i, i + 1).equals(" ")){
-                if(isText){
-                    sum++;
-                }
-                isText = false;
-            }
-            else{
-                isText = true;
-            }
+        String first = line.substring(0, 3);
+        String second = line.substring(4);
+        first = reverseNumber(first);
+        second = reverseNumber(second);
+
+        int firstNumber = Integer.parseInt(first);
+        int secondNumber = Integer.parseInt(second);
+
+        if(firstNumber >= secondNumber){
+            System.out.printf("%d", firstNumber);
         }
-        if(isText){
-            sum++;
+        else{
+            System.out.printf("%d", secondNumber);
+        }
+    }
+
+    private static String reverseNumber(String number){
+        String reverse = "";
+        for(int i = 2; i >= 0; i--){
+            reverse += number.substring(i, i + 1);
         }
 
-        System.out.printf("%d", sum);
+        return reverse;
     }
 }
