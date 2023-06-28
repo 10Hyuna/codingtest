@@ -6,30 +6,25 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        String[] alphabet = {"ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"};
+
         String line = br.readLine();
+        String dialText;
+        String alphabetText;
+        int sum = 0;
 
-        String first = line.substring(0, 3);
-        String second = line.substring(4);
-        first = reverseNumber(first);
-        second = reverseNumber(second);
-
-        int firstNumber = Integer.parseInt(first);
-        int secondNumber = Integer.parseInt(second);
-
-        if(firstNumber >= secondNumber){
-            System.out.printf("%d", firstNumber);
-        }
-        else{
-            System.out.printf("%d", secondNumber);
-        }
-    }
-
-    private static String reverseNumber(String number){
-        String reverse = "";
-        for(int i = 2; i >= 0; i--){
-            reverse += number.substring(i, i + 1);
+        for(int i = 0; i < line.length(); i++){
+            dialText = line.substring(i, i + 1);
+            for(int j = 0; j < alphabet.length; j++){
+                for(int k = 0; k < alphabet[j].length(); k++){
+                    alphabetText = alphabet[j].substring(k, k + 1);
+                    if(dialText.equals(alphabetText)){
+                        sum += (j + 3);
+                    }
+                }
+            }
         }
 
-        return reverse;
+        System.out.printf("%d", sum);
     }
 }
